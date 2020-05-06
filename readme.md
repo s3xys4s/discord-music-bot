@@ -1,13 +1,16 @@
 ## Simple music bot for discord
 
-#### 1. Install dependencies with a package manager of your choice
+#### 1. Install ffmpeg
+https://www.ffmpeg.org/download.html
+
+#### 2. Install node dependencies with a package manager of your choice
 ```bash
 npm install
 # or 
 yarn install
 ```
 
-#### 2. Create config.json
+#### 3. Create config.json
 ```json
 {
   "token": "<bot_token>"
@@ -16,7 +19,7 @@ yarn install
 
 Token can be obtained here: https://discord.com/developers/applications.
 
-#### 3. Start it
+#### 4. Start it
 ```bash
 npm start
 # or
