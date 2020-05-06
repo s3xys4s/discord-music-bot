@@ -16,13 +16,13 @@ yarn install
 
 Token can be obtained here: https://discord.com/developers/applications.
 
-### 3. Start it
+#### 3. Start it
 ```bash
 npm start
 # or
 yarn start
 ```
 
-### TODO:
+#### TODO:
 * pause/resume/ff/rewind/stop/exit commands
 * mb use redis for queue
