@@ -27,5 +27,6 @@ yarn start
 ```
 
 #### TODO:
+* manually download mediafile and convert it with vanilla ffmpeg
 * pause/resume/ff/rewind/stop/exit commands
 * mb use redis for queue
