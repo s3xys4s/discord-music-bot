@@ -13,7 +13,8 @@ yarn install
 #### 3. Create config.json
 ```json
 {
-  "token": "<bot_token>"
+  "token": "<bot_token>",
+  "prefix": "smb!" // will be used to identify message as a command
 }
 ```
 
@@ -27,6 +28,5 @@ yarn start
 ```
 
 #### TODO:
-* manually download mediafile and convert it with vanilla ffmpeg
-* pause/resume/ff/rewind/stop/exit commands
-* mb use redis for queue
+* search on youtube
+* add support for plain media files
