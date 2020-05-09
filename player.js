@@ -24,8 +24,8 @@ module.exports = class Player {
         if (this.queueIsEmpty) {
           this.leave();
         } else {
-          url = this.queue.shift();
-          this.play();
+          const url = this.queue.shift();
+          this.play(url);
         }
       })
     }
