@@ -1,41 +1,61 @@
 const ytdl = require('ytdl-core-discord');
 
-module.export = class Player {
-  constructor(connection) {
+module.exports = class Player {
+  constructor(message) {
     this.queue = [];
-    this.connection = connection;
+    this.message = message;
   }
 
-  play(url) {
+  get queueIsEmpty() {
+    if (this.queue.length) return false;
+    else return true;
+  }
+
+  async play(url) {
     //msg.reply(`Playing ${url}`);
-    if (this.queue.length) {
-      this.queue.push(url)
-    };
-    this.dispatcher = connection.play(await ytdl(url), { type: 'opus' });
-    url = this.queue.shift();
+    if (this.queueIsEmpty) {
+      this.connection = await this.message.member.voice.channel.join();
+      this.queue.push(url);
+      this.play();
+    } else {
+      this.dispatcher = connection.play(await ytdl(url), { type: 'opus' });
+      this.dispatcher.on('end', () => {
+        if (this.queueIsEmpty) {
+          this.leave();
+        } else {
+          url = this.queue.shift();
+          this.play();
+        }
+      })
+    }
   }
 
-  pause() {
+  async pause() {
     this.dispatcher.pause();
   }
 
-  resume() {
+  async resume() {
     this.dispatcher.resume();
   }
 
-  skip() {
-    this.queue.shift();
+  async skip() {
+    if (this.dispatcher) {
+      url = this.queue.shift();
+      this.dispatcher.destroy();
+      this.play(url);
+    }
   }
 
-  stop() {
+  async stop() {
     if (this.dispatcher) this.dispatcher.destroy();
   }
 
-  setVolume() {
-    this.dispatcher.setVolume()
+  async leave() {
+    this.connection.disconnect();
   }
 
-  get next() {
-    return this.queue[1];
+  async setVolume() {
+    if (this.dispatcher) this.dispatcher.setVolume();
   }
+
 }

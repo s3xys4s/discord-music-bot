@@ -1,8 +1,12 @@
+const Player = require('../player');
+
 module.exports = {
   name: 'play',
   description: 'Play a track by provided url',
+  player: null,
   async execute(message, args) {
     url = args[1];
-    const connection = await message.member.voice.channel.join();
+    this.player = new Player(message);
+    this.player.play(url);
   }
 }
