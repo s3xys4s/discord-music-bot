@@ -18,7 +18,8 @@ module.exports = class Player {
       this.queue.push(url);
       this.play();
     } else {
-      this.dispatcher = connection.play(await ytdl(url), { type: 'opus' });
+      const url = this.queue.shift();
+      this.dispatcher = this.connection.play(await ytdl(url), { type: 'opus' });
       this.dispatcher.on('end', () => {
         if (this.queueIsEmpty) {
           this.leave();
@@ -40,9 +41,14 @@ module.exports = class Player {
 
   async skip() {
     if (this.dispatcher) {
-      url = this.queue.shift();
-      this.dispatcher.destroy();
-      this.play(url);
+      if (this.queueIsEmpty) {
+        // nothing to skip
+        
+      } else {
+        const url = this.queue.shift();
+        this.dispatcher.destroy();
+        this.play(url);
+      }
     }
   }
 

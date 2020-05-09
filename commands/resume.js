@@ -1,8 +1,8 @@
 module.exports = {
-  name: 'stop',
-  description: 'Stop current track',
+  name: 'resume',
+  description: 'Resume current track',
   async execute() {
     const { player } = require('./play');
-    player.stop();
+    player.resume();
   }
 }
