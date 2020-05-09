@@ -14,13 +14,17 @@ yarn install
 ```json
 {
   "token": "<bot_token>",
-  "prefix": "smb!" // will be used to identify message as a command
+  "prefix": "smb!"
 }
+```
+Prefix is used to identify message as a command, f.e:
+```
+smb!play
 ```
 
 Token can be obtained here: https://discord.com/developers/applications.
 
-#### 4. Start it
+#### 4. Start it!
 ```bash
 npm start
 # or
