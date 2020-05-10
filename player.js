@@ -4,7 +4,12 @@ module.exports = class Player {
   constructor(message) {
     this.queue = [];
     this.message = message;
-    this.dispatcher = null;
+    //this.dispatcher = null;
+    this.nowPlaying = null;
+  }
+
+  get currentQueue() {
+    return this.queue;
   }
 
   get queueIsEmpty() {
@@ -22,13 +27,17 @@ module.exports = class Player {
 
   async createDispatcher(url) {
     if (!this.connection) this.connection = await this.message.member.voice.channel.join();
+
     this.dispatcher = this.connection.play(await ytdl(url), { type: 'opus' });
+    this.nowPlaying = url;
+
     this.dispatcher.on('end', async () => {
       if (this.queueIsEmpty) {
         this.leave();
       } else {
         url = this.queueNext();
         this.createDispatcher(url)
+        
       }
     });
   };
