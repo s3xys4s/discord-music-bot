@@ -31,6 +31,13 @@ npm start
 yarn start
 ```
 
+And you can also do:
+```
+node ./main.js
+```
+
 #### TODO:
+* rewind and fast-forward
 * search on youtube
 * add support for plain media files
+* l10n
