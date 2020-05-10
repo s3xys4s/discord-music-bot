@@ -59,8 +59,8 @@ module.exports = class Player {
     this.connection.disconnect();
   }
 
-  async setVolume() {
-    if (this.dispatcher) this.dispatcher.setVolume();
+  async setVolume(volume) {
+    if (this.dispatcher) this.dispatcher.setVolume(volume);
   }
 
 }
