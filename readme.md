@@ -13,13 +13,18 @@ yarn install
 #### 3. Create config.json
 ```json
 {
-  "token": "<bot_token>"
+  "token": "<bot_token>",
+  "prefix": "smb!"
 }
+```
+Prefix is used to identify message as a command, f.e:
+```
+smb!play
 ```
 
 Token can be obtained here: https://discord.com/developers/applications.
 
-#### 4. Start it
+#### 4. Start it!
 ```bash
 npm start
 # or
@@ -27,6 +32,5 @@ yarn start
 ```
 
 #### TODO:
-* manually download mediafile and convert it with vanilla ffmpeg
-* pause/resume/ff/rewind/stop/exit commands
-* mb use redis for queue
+* search on youtube
+* add support for plain media files
