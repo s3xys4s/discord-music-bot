@@ -5,7 +5,8 @@ module.exports = {
   description: 'Play a track by provided url',
   async execute(message, args) {
     const url = args[0];
-    this.player = new Player(message);
+    console.log(this.player)
+    if (!this.player) this.player = new Player(message);
     this.player.play(url);
   }
 }

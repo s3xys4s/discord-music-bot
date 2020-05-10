@@ -4,6 +4,7 @@ module.exports = class Player {
   constructor(message) {
     this.queue = [];
     this.message = message;
+    this.dispatcher = null;
   }
 
   get queueIsEmpty() {
@@ -11,23 +12,41 @@ module.exports = class Player {
     else return true;
   }
 
-  async play(url) {
-    //msg.reply(`Playing ${url}`);
-    if (this.queueIsEmpty) {
-      this.connection = await this.message.member.voice.channel.join();      
-      this.dispatcher = this.connection.play(await ytdl(url), { type: 'opus' });
-    } else {
-      this.queue.push(url);
-    }
+  async queueNext() {
+    return this.queue.shift();
+  }
 
+  async queueAdd(url) {
+    this.queue.push(url);
+  }
+
+  async createDispatcher(url) {
+    if (!this.connection) this.connection = await this.message.member.voice.channel.join();
+    this.dispatcher = this.connection.play(await ytdl(url), { type: 'opus' });
     this.dispatcher.on('end', async () => {
       if (this.queueIsEmpty) {
         this.leave();
       } else {
-        url = this.queue.shift();
-        this.dispatcher = this.connection.play(await ytdl(url), { type: 'opus' });
+        url = this.queueNext();
+        this.createDispatcher(url)
       }
     });
+  };
+
+  async destroyDispatcher() {
+    this.dispatcher.destroy()
+  }
+
+  async flushQueue() {
+    this.queue = [];
+  }
+
+  async play(url) {
+    if (this.dispatcher) {
+      this.queueAdd(url);
+    } else {
+      this.createDispatcher(url);
+    }
   }
 
   async pause() {
@@ -41,18 +60,20 @@ module.exports = class Player {
   async skip() {
     if (this.dispatcher) {
       if (this.queueIsEmpty) {
-        // nothing to skip
-        
+        this.leave();
       } else {
-        const url = this.queue.shift();
-        this.dispatcher.destroy();
-        this.play(url);
+        const url = await this.queueNext();
+        this.destroyDispatcher();
+        this.createDispatcher(url);
       }
     }
   }
 
   async stop() {
-    if (this.dispatcher) this.dispatcher.destroy();
+    if (this.dispatcher) {
+      this.flushQueue();
+      this.destroyDispatcher()
+    };
   }
 
   async leave() {
