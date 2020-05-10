@@ -14,21 +14,20 @@ module.exports = class Player {
   async play(url) {
     //msg.reply(`Playing ${url}`);
     if (this.queueIsEmpty) {
-      this.connection = await this.message.member.voice.channel.join();
-      this.queue.push(url);
-      this.play();
-    } else {
-      const url = this.queue.shift();
+      this.connection = await this.message.member.voice.channel.join();      
       this.dispatcher = this.connection.play(await ytdl(url), { type: 'opus' });
-      this.dispatcher.on('end', () => {
-        if (this.queueIsEmpty) {
-          this.leave();
-        } else {
-          const url = this.queue.shift();
-          this.play(url);
-        }
-      })
+    } else {
+      this.queue.push(url);
     }
+
+    this.dispatcher.on('end', async () => {
+      if (this.queueIsEmpty) {
+        this.leave();
+      } else {
+        url = this.queue.shift();
+        this.dispatcher = this.connection.play(await ytdl(url), { type: 'opus' });
+      }
+    });
   }
 
   async pause() {
