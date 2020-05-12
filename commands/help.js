@@ -4,6 +4,8 @@ const { prefix } = require('../config.json');
 async function getCommands() {
   const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
   result = [];
+
+  //reduce!!!
   for (file of commandFiles) {
     command = require(`./${file}`);
     result.push({ 

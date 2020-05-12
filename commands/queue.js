@@ -8,6 +8,7 @@ async function formatQueue() {
     value: player.nowPlaying
   })
 
+  //reduce!!!
   for (n in queue) {
     result.push({ 
       name: parseInt(n) + 1,

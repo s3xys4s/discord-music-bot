@@ -34,15 +34,18 @@ yarn install
 ```json
 {
   "token": "<bot_token>",
+  "replies": "en",
   "prefix": "smb!"
 }
 ```
-Prefix is used to identify message as a command, f.e:
+* Prefix is used to identify message as a command, f.e:
 ```
 smb!play
 ```
 
-Token can be obtained here:\
+* Replies are json files with bot reply lines for different actions. They are located in ./replies. If you can create your a json file in with your own lines and provide it's filename without extension.
+
+* Token can be obtained here:\
 https://discord.com/developers/applications.
 
 #### 4. Start it!
@@ -58,7 +61,6 @@ node ./main.js
 ```
 
 #### TODO:
-* reply on different actions
 * support for plain media files
 * rewind and fast-forward
 * l10n using json with strings

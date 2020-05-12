@@ -1,0 +1,9 @@
+{
+  "leave": "Leaving voice channel.",
+  "play": "Playing ",
+  "pause": "Audio playback is paused.",
+  "resume": "Audio playback has been resumed.",
+  "skip": "Skipping current track.",
+  "stop": "Audio playback has been stopped.",
+  "volume": "Volume is now "
+}
