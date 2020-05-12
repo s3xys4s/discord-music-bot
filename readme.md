@@ -3,7 +3,8 @@
 At some point, me and my mates were tired of lagginess of bots, caused by them serving shitload of channels, so I came with a brilliant idea to selfhost my own.
 
 P.S: This is probably my first vanilla javascript project on node, so excuse me for crappy design. If you have any ideas how to refactor it, please, raise an issue.
-##### I'm waiting for your issues and pool requests! 😊
+
+**I'm waiting for your issues and pool requests! 😊**
 
 ## Commands
 

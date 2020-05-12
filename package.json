@@ -1,7 +1,7 @@
 {
-  "name": "discord_bot",
+  "name": "simple_discord_music_bot",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "main.js",
   "license": "MIT",
   "scripts": {
     "start": "node main.js"
