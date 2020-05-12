@@ -9,7 +9,6 @@
   "dependencies": {
     "@discordjs/opus": "^0.3.2",
     "discord.js": "^12.2.0",
-    "get-title-at-url": "^1.1.8",
     "ytdl-core-discord": "^1.2.0"
   }
 }
