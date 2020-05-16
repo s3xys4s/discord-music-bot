@@ -1,4 +1,4 @@
-# Simple music bot for discord
+# Discord music bot
 
 At some point, me and my mates were tired of lagginess of bots, caused by them serving shitload of channels, so I came with a brilliant idea to selfhost my own.
 
