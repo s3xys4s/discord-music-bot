@@ -2,6 +2,11 @@
   "name": "simple_discord_music_bot",
   "version": "1.0.0",
   "main": "main.js",
+  "homepage": "https://github.com/s3xys4s/discord-music-bot",
+  "author": {
+    "name": "Alexander Volokh",
+    "email": "s3xys4s@gmail.com"
+  },
   "license": "MIT",
   "scripts": {
     "start": "node main.js"
